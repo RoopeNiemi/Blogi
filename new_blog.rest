@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJvYkZlYXIiLCJpZCI6IjVhODgzZTRhODIxOWFhMzM1ODBlMWUwMyIsImlhdCI6MTUxODg4NTE2Mn0.DjcEhLjqvtAyDW77SaHPEzg2yAm_8Zi9vJ5Qm5chQm0
+
+{
+    "title": "Programming languages and their uses",
+    "author": "Matthew Allen",
+    "url":"http://blogsaboutprogrammingandteachingit.com",
+    "userId": "5a883e4a8219aa33580e1e03"
+}

@@ -1,26 +1,37 @@
-const mongoose = require('mongoose')
+const mongoose=require('mongoose')
+const User=require('./models/user')
 
-// korvaa url oman tietokantasi urlilla. ethän laita salasanaa Gothubiin!
 require ('dotenv').config()
 const url = process.env.MONGODB_URI
+
 mongoose.connect(url)
+mongoose.Promise=global.Promise
 
 
-const Note = mongoose.model('Note', {
-  content: String,
-  date: Date,
-  important: Boolean
-})
 
-const note = new Note({
-  content: 'HTML on helppoa',
-  date: new Date(),
-  important: true
-})
 
-note
+
+
+  if(process.argv.length>2){
+    const user = new User({
+        username: process.argv[2],
+        name: process.argv[3],
+        password:process.argv[4],
+        adult:true
+      })
+
+      user
   .save()
-  .then(response => {
-    console.log('note saved!')
-    mongoose.connection.close()
+  .then(result=>{
+      mongoose.connection.close()
+  })}
+    else{
+        User
+        .find({})
+        .then(result => {
+        result.forEach(user => {
+            console.log(user.name+''+user.username+' ,adult: '+user.adult)
+        })
+        mongoose.connection.close()
   })
+}
